@@ -8,26 +8,29 @@ int _printf(const char *format, ...)
 	int i, count = 0, length = 0;
 
 	va_start(ap, format);
-	for (i = 1; format[i] != '\0'; i++)
+	for (i = 0; format[i] != '\0'; i++)
 	{
-		if (format[i - 1] == '%' && format[i] == 'c')
+		if (format[i] == '%' && format[i + 1] == 'c')
 		{
 			for_char = va_arg(ap, int);
 			write(1, &for_char, 1);
 			count++;
+			i++;
 		}
-		else if (format[i - 1] == '%' && format[i] == 's')
+		else if (format[i] == '%' && format[i + 1] == 's')
 		{
 			for_string = va_arg(ap, char *);
 			while(for_string[length] != '\0')
 				length++;
 			write(1, for_string, length);
 			count = count + length;
+			i++;
 		}
-		else if (format[i - 1] == '%' && format[i] == '%')
+		else if (format[i] == '%' && format[i + 1] == '%')
 		{
 			write(1, "%", 1);
 			count++;
+			i++;
 		}
 		else
 		{
