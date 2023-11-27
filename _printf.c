@@ -28,6 +28,7 @@ int _printf(const char *format, ...)
 			if (for_string == NULL)
 				for_string = "(null)";
 			for (length = 0; for_string[length] != '\0'; length++)
+				continue;
 			write(1, for_string, length);
 			count = count + length - 1;
 			i++;
