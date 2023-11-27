@@ -7,8 +7,10 @@ int _printf(const char *format, ...)
 	va_list ap;
 	int i, count = 0, length = 0;
 
+	if (format == NULL)
+		exit(60);
 	va_start(ap, format);
-	for (i = 0; format != NULL && format[i] != '\0'; i++)
+	for (i = 0; format[i] != '\0'; i++)
 	{
 		if (format[i] == '%' && format[i + 1] == 'c')
 		{
@@ -20,6 +22,8 @@ int _printf(const char *format, ...)
 		else if (format[i] == '%' && format[i + 1] == 's')
 		{
 			for_string = va_arg(ap, char *);
+			if (for_string == NULL)
+				for_string = "(null)";
 			while(for_string[length] != '\0')
 				length++;
 			write(1, for_string, length);
@@ -33,7 +37,7 @@ int _printf(const char *format, ...)
 			count++;
 			i++;
 		}
-		else if (format[i] == '%')
+		else if (format[i] == '%' && format[i + 1] == '\0')
 			continue;
 		else
 		{
