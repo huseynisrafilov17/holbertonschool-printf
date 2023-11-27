@@ -8,7 +8,7 @@ int _printf(const char *format, ...)
 	int i, count = 0, length = 0;
 
 	va_start(ap, format);
-	for (i = 0; format[i] != '\0'; i++)
+	for (i = 0; format != NULL && format[i] != '\0'; i++)
 	{
 		if (format[i] == '%' && format[i + 1] == 'c')
 		{
