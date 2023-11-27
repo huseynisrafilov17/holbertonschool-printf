@@ -42,6 +42,6 @@ int main(void)
     printf("Unknown:[%r]\n");
     */
 	char a = 'a';
-	_printf("s", "cixard");
+	_printf("c", 'a');
 	return (0);
 }

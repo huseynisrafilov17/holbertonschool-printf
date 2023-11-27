@@ -1,10 +1,9 @@
 #include <stdarg.h>
-#include <stdlib.h>
 #include <unistd.h>
 int _printf(const char *format, ...)
 {
-	char *for_length;
-	char *for_malloc;
+	char *for_string;
+	char for_char;
 	va_list ap;
 	int i, count = 0, length = 0;
 
@@ -13,18 +12,22 @@ int _printf(const char *format, ...)
 	{
 		if (format[i] == 'c')
 		{
-			for_malloc = malloc(sizeof(char));
-			*for_malloc = va_arg(ap, int);
-			write(1, for_malloc, 1);
-			free(for_malloc);
+			for_char = va_arg(ap, int);
+			write(1, &for_char, 1);
+			count++;
 		}
 		else if (format[i] == 's')
 		{
-			for_length = va_arg(ap, char *);
-			while(for_length[length] != '\0')
+			for_string = va_arg(ap, char *);
+			while(for_string[length] != '\0')
 				length++;
-			//for_malloc = malloc(length * sizeof(char));
-			write(1, for_length, length);
+			write(1, for_string, length);
+			count = count + length;
+		}
+		else if (format[i] == '%')
+		{
+			write(1, "%", 1);
+			count++;
 		}
 	}
 	va_end(ap);
