@@ -29,6 +29,11 @@ int _printf(const char *format, ...)
 			write(1, "%", 1);
 			count++;
 		}
+		else
+		{
+			write(1, &(format[i]), 1);
+			count++;
+		}
 	}
 	va_end(ap);
 	return (count);
