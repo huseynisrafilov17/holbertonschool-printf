@@ -1,6 +1,31 @@
+#include "main.h"
 #include <stdarg.h>
 #include <unistd.h>
 #include <stdlib.h>
+/**
+ * _printf_char - prints character.
+ * @c: char.
+ * Return: number of bytes written.
+ */
+int _printf_char(char c)
+{
+	return (write(1, &c, 1);
+}
+/**
+ * _printf_string - prints string.
+ * @str: string.
+ * Return: number of bytes written.
+ */
+int _printf_string(char *str)
+{
+	int length = 0;
+
+	if (str == NULL)
+		str = "(null)";
+	for (length = 0; str[length] != '\0'; length++)
+		continue;
+	return (write(1, str, length));
+}
 /**
  * _printf - Function printf.
  * @format: String.
@@ -8,39 +33,26 @@
  */
 int _printf(const char *format, ...)
 {
-	char *for_string;
-	char for_char;
 	va_list ap;
-	int i, count = 0, length = 0;
+	int i, count = 0;
 
 	va_start(ap, format);
 	for (i = 0; format != NULL && format[i] != '\0'; i++)
 	{
-		if (format[i] == '%' && format[i + 1] == 'c')
+		if (format[i] == '%')
 		{
-			for_char = va_arg(ap, int);
-			count += write(1, &for_char, 1);
-			i++;
-		}
-		else if (format[i] == '%' && format[i + 1] == 's')
-		{
-			for_string = va_arg(ap, char *);
-			if (for_string == NULL)
-				for_string = "(null)";
-			for (length = 0; for_string[length] != '\0'; length++)
-				continue;
-			count += write(1, for_string, length);
-			i++;
-		}
-		else if (format[i] == '%' && format[i + 1] == '%')
-		{
-			count += write(1, "%", 1);
+			if (format[i + 1] == 'c')
+				count += _printf_char(va_arg(ap, int));
+			else if (format[i + 1] == 's')
+				count += _printf_string(va_arg(ap, char *));
+			else if (format[i + 1] == '%')
+				count += write(1, "%", 1);
 			i++;
 		}
 		else if (format[i] == '%' && format[i + 1] == '\0')
 			continue;
 		else
-			count += write(1, &(format[i]), 1);
+			count += _printf_char(format[i]);
 	}
 	va_end(ap);
 	if (count == 0)
