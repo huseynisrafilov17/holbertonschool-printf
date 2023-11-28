@@ -46,7 +46,12 @@ int _printf(const char *format, ...)
 			else if (format[i + 1] == 's')
 				count += _printf_string(va_arg(ap, char *));
 			else if (format[i + 1] == '%')
-				count += write(1, "%", 1);
+				count += _printf_char('%');
+			else
+			{
+				count += _printf_char(format[i]);
+				count += _printf_char(format[i + 1]);
+			}
 			i++;
 		}
 		else if (format[i] == '%' && format[i + 1] == '\0')
