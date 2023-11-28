@@ -39,7 +39,7 @@ int _printf(const char *format, ...)
 	va_start(ap, format);
 	for (i = 0; format != NULL && format[i] != '\0'; i++)
 	{
-		if (format[i] == '%')
+		if (format[i] == '%' && format[i + 1] != '\0')
 		{
 			if (format[i + 1] == 'c')
 				count += _printf_char(va_arg(ap, int));
