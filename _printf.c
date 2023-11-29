@@ -33,20 +33,20 @@ int _printf_string(char *str)
  */
 int _printf_int(int a)
 {
-	unsigned int b, count = 0;
+	unsigned int b, count = 0, i;
 
 	if (a < 0)
 	{
-		count += _print_char('-');
+		count += _printf_char('-');
 		b = -1 * a;
 	}
 	else
 		b = a;
 	for (i = 1; (b / i) / 10 > 0; i *= 10)
 		continue;
-	for (; i > 0; i++)
+	for (; i > 0; i /= 10)
 	{
-		count += _print_char(b / 10 + 48);
+		count += _printf_char(b / 10 + 48);
 		b = b % 10;
 	}
 
