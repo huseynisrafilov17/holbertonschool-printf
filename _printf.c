@@ -26,7 +26,7 @@ int _printf(const char *format, ...)
 			else if (format[i + 1] == 'i' || format[i + 1] == 'd')
 				count += _printf_int(va_arg(ap, int));
 			else if (format[i + 1] == 'b')
-				count += _printf_binary(va_arg(ap, int));
+				count += _printf_binary(va_arg(ap, long int));
 			else
 			{
 				count += _printf_char(format[i]);

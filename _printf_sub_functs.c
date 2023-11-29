@@ -57,7 +57,7 @@ int _printf_int(int a)
  * @a: int.
  * Return: count.
  */
-int _printf_binary(int a)
+int _printf_binary(long int a)
 {
 	int count = 0;
 
