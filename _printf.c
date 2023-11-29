@@ -46,8 +46,8 @@ int _printf_int(int a)
 		continue;
 	for (; i > 0; i /= 10)
 	{
-		count += _printf_char(b / 10 + 48);
-		b = b % 10;
+		count += _printf_char(b / i + 48);
+		b = b % i;
 	}
 
 	return (count);
