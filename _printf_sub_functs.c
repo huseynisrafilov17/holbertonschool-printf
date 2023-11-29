@@ -59,19 +59,30 @@ int _printf_int(int a)
  */
 int _printf_binary(long int a)
 {
+	int is_negative = 0;
 	int count = 0;
 	long int i = 1;
 
 	if (a < 0)
 	{
-		a = -1 * a;
-		a = ~a + 1;
+		is_negative = 1;
+		a = -1 * (a + 1);
 	}
 	for (; (a / i) / 2 != 0; i *= 2)
 		continue;
 	count += _printf_char(a / i + 48);
 	for (; i >= 2; i /= 2)
-		count += _printf_char(a % i + 48);
+	{
+		if (is_negative == 0)
+			count += _printf_char(a % i + 48);
+		else
+		{
+			if (a % i == 0)
+				count += _printf_char('1');
+			else
+				count += _printf_char('0');
+		}
+	}
 	return (count);
 }
 
