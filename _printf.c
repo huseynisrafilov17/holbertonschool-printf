@@ -3,56 +3,6 @@
 #include <unistd.h>
 #include <stdlib.h>
 /**
- * _printf_char - prints character.
- * @c: char.
- * Return: number of bytes written.
- */
-int _printf_char(char c)
-{
-	return (write(1, &c, 1));
-}
-/**
- * _printf_string - prints string.
- * @str: string.
- * Return: number of bytes written.
- */
-int _printf_string(char *str)
-{
-	int length = 0;
-
-	if (str == NULL)
-		str = "(null)";
-	for (length = 0; str[length] != '\0'; length++)
-		continue;
-	return (write(1, str, length));
-}
-/**
- * _printf_int - prints int.
- * @a: integer.
- * Return: Count.
- */
-int _printf_int(int a)
-{
-	unsigned int b, count = 0, i;
-
-	if (a < 0)
-	{
-		count += _printf_char('-');
-		b = -1 * a;
-	}
-	else
-		b = a;
-	for (i = 1; (b / i) / 10 > 0; i *= 10)
-		continue;
-	for (; i > 0; i /= 10)
-	{
-		count += _printf_char(b / i + 48);
-		b = b % i;
-	}
-
-	return (count);
-}
-/**
  * _printf - Function printf.
  * @format: String.
  * Return: Count.
@@ -75,6 +25,8 @@ int _printf(const char *format, ...)
 				count += _printf_char('%');
 			else if (format[i + 1] == 'i' || format[i + 1] == 'd')
 				count += _printf_int(va_arg(ap, int));
+			else if (format[i + 1] == 'b')
+				count += _printf_binary(va_arg(ap, int));
 			else
 			{
 				count += _printf_char(format[i]);
