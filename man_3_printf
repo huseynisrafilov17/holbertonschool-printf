@@ -1,0 +1,39 @@
+NAME:
+	_printf - formats given string and arguments and prints it.
+
+SYNOPSIS:
+	int _printf(const char *format, ...);
+
+DESCRIPTION:
+	Formats input string and arguments and prints it.
+	Returns the number of bytes printed.
+
+	FORMATS:
+		%%: prints '%'.
+		%c: takes character as input.
+		%s: takes string as input.
+		%i: takes integer as input.
+		%d: takes decimal as input.
+		%b: converts input into binary. (W.I.P)
+
+EXAMPLE:
+	_printf("We %s 100%% sure.", "are");
+
+	OUTPUT:
+		We are 100% sure.
+	
+	RETURN VALUE:
+		17
+
+REPORTING BUGS:
+	To report bugs, you can write to either Fuad Mammadov or Huseyn Israfilov on Slack.
+
+AUTHORS:
+	Huseyn Israfilov
+	Fuad Mammadov
+
+COPYRIGHT:
+	You are free to use this.
+
+SEE ALSO:
+        man printf
