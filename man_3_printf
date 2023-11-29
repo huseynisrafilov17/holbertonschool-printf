@@ -1,39 +1,67 @@
-NAME:
-	_printf - formats given string and arguments and prints it.
+.TH PRINTF 3 "2023-11-28" "Version 1.0" "User Commands"
 
-SYNOPSIS:
-	int _printf(const char *format, ...);
+.SH NAME
+_printf \- formats given string and arguments and prints it.
 
-DESCRIPTION:
-	Formats input string and arguments and prints it.
-	Returns the number of bytes printed.
+.SH SYNOPSIS
+\fB#include <stdio.h>\fR
+.br
+\fBint _printf(const char *format, ...);\fR
 
-	FORMATS:
-		%%: prints '%'.
-		%c: takes character as input.
-		%s: takes string as input.
-		%i: takes integer as input.
-		%d: takes decimal as input.
-		%b: converts input into binary. (W.I.P)
+.SH DESCRIPTION
+The \fB_printf\fR function formats the input string and arguments and prints it to the standard output.
 
-EXAMPLE:
-	_printf("We %s 100%% sure.", "are");
+.SH RETURN VALUE
+The function returns the number of bytes printed.
 
-	OUTPUT:
-		We are 100% sure.
-	
-	RETURN VALUE:
-		17
+.SH FORMATS
+The following format specifiers are supported:
 
-REPORTING BUGS:
-	To report bugs, you can write to either Fuad Mammadov or Huseyn Israfilov on Slack.
+.TP
+\fB%%\fR
+Prints '%'.
 
-AUTHORS:
-	Huseyn Israfilov
-	Fuad Mammadov
+.TP
+\fB%c\fR
+Takes a character as input.
 
-COPYRIGHT:
-	You are free to use this.
+.TP
+\fB%s\fR
+Takes a string as input.
 
-SEE ALSO:
-        man printf
+.TP
+\fB%i\fR
+Takes an integer as input.
+
+.TP
+\fB%d\fR
+Takes a decimal as input.
+
+.TP
+\fB%b\fR
+Converts input into binary. (Work in progress)
+
+.SH EXAMPLE
+.P
+\fB_printf("We %s 100%% sure.", "are");\fR
+.P
+Outputs:
+.P
+\fBWe are 100% sure.\fR
+.P
+Returns: 17
+
+.SH REPORTING BUGS
+To report bugs, please contact either Fuad Mammadov or Huseyn Israfilov on Slack.
+
+.SH AUTHORS
+Huseyn Israfilov
+.br
+Fuad Mammadov
+
+.SH COPYRIGHT
+You are free to use this.
+
+.SH SEE ALSO
+\fBprintf(3)\fR
+
