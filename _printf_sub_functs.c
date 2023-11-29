@@ -62,6 +62,8 @@ int _printf_binary(long int a)
 	int count = 0;
 	long int i = 1;
 
+	if (a < 0)
+		a = ~a;
 	for (; (a / i) / 2 != 0; i *= 2)
 		continue;
 	count += _printf_char(a / i + 48);
@@ -69,3 +71,4 @@ int _printf_binary(long int a)
 		count += _printf_char(a % i + 48);
 	return (count);
 }
+
