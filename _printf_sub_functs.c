@@ -59,8 +59,7 @@ int _printf_int(int a)
  */
 int _printf_binary(long int a)
 {
-	int is_negative = 0;
-	int count = 0;
+	int is_negative = 0, count = 0;
 	long int i = 1;
 
 	if (a < 0)
