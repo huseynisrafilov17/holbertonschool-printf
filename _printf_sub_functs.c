@@ -59,9 +59,11 @@ int _printf_int(int a)
  */
 int _printf_binary(long int a)
 {
-	int count = 0;
+	int count = 0, i = 1;
 
-	for (; a != 0; a /= 2)
-		count += _printf_char(a % 2 + 48);
+	for (; (a / i) / 2 != 0; i *= 2)
+		continue;
+	for (; i != 0; i /= 2)
+		count += write(a % i);
 	return (count);
 }
