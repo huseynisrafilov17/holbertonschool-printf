@@ -84,4 +84,3 @@ int _printf_binary(long int a)
 	}
 	return (count);
 }
-
